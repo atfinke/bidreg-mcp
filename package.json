@@ -1,0 +1,30 @@
+{
+  "name": "bidreg-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP server for Kellogg BidReg — bid stats, TCE, schedule, and my classes via cached CSV exports.",
+  "scripts": {
+    "build": "node --input-type=module --eval \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true });\" && tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.typecheck.json",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "test": "node --import tsx --test test/*.test.ts",
+    "test:live": "node --import tsx scripts/live-smoke.ts",
+    "verify": "npm run check && npm run test && npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "csv-parse": "^5.6.0",
+    "node-html-parser": "^6.1.0",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "25.5.0",
+    "tsx": "4.21.0",
+    "typescript": "6.0.2"
+  }
+}
