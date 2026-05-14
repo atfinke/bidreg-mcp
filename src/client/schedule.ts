@@ -55,7 +55,22 @@ export async function refreshSchedule(
   return getSchedule(client, termCode);
 }
 
+// BidReg's schedule export is a two-step session-stateful flow: POST sets the
+// search criteria server-side, GET pulls the export of the last search. Two
+// concurrent downloads for different terms can interleave so the GET returns
+// the other term's data. Serialize all downloads on a single chain.
+let downloadChain: Promise<unknown> = Promise.resolve();
+
 async function downloadScheduleCsv(
+  client: BidRegClient,
+  termCode: string,
+): Promise<string> {
+  const result = downloadChain.then(() => doDownloadScheduleCsv(client, termCode));
+  downloadChain = result.catch(() => undefined);
+  return result;
+}
+
+async function doDownloadScheduleCsv(
   client: BidRegClient,
   termCode: string,
 ): Promise<string> {
