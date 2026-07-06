@@ -5,6 +5,7 @@ import { registerTceTools } from "./tceTools.js";
 import { registerScheduleTools } from "./scheduleTools.js";
 import { registerClassTools } from "./classTools.js";
 import { registerSummaryTools } from "./summaryTools.js";
+import { registerSyllabusTools } from "./syllabusTools.js";
 
 export function registerTools(server: McpServer, client: BidRegClient): void {
   registerBidstatsTools(server, client);
@@ -12,4 +13,5 @@ export function registerTools(server: McpServer, client: BidRegClient): void {
   registerScheduleTools(server, client);
   registerClassTools(server, client);
   registerSummaryTools(server, client);
+  registerSyllabusTools(server, client);
 }

@@ -15,6 +15,7 @@ Exposes Kellogg BidReg bid statistics, course schedule, and enrollment data thro
 - `bidreg_export_bidstats` — save filtered bid stats to a local CSV file
 - `bidreg_search_schedule` — search the course schedule by term, subject, course, instructor, or campus
 - `bidreg_get_my_classes` — scrape enrolled courses from the My Classes page
+- `bidreg_get_syllabus` — download a course's sample syllabus PDF to disk and report its term plus staleness vs an optional target term
 
 ## Setup
 
